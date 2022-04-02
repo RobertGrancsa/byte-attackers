@@ -14,6 +14,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
 import android.location.Address;
@@ -181,7 +182,14 @@ public class MainActivity extends AppCompatActivity {
 //                recognizer.pr
             }
         });
-
+        MaterialCardView Panic = findViewById(R.id.panic_button);
+        Panic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SmsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         translate = findViewById(R.id.translate);
         translate.setOnClickListener(new View.OnClickListener() {
