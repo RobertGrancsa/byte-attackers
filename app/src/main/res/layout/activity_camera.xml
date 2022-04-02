@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:background="@color/blue_200"
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -32,6 +33,7 @@
         android:text="Take a photo" />
 
     <LinearLayout
+        android:background="@color/blue_500"
         android:orientation="vertical"
         android:layout_marginTop="64dp"
         android:layout_width="match_parent"
