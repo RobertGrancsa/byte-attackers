@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +39,8 @@ public class TranslateActivity extends AppCompatActivity {
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private TextRecognizer recognizer;
     private Translator englishRomanianTranslator;
+    private TranslatorOptions options;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -46,34 +51,29 @@ public class TranslateActivity extends AppCompatActivity {
         Button photoButton = (Button) this.findViewById(R.id.button1);
         readText = findViewById(R.id.readText);
 
-        TranslatorOptions options =
-                new TranslatorOptions.Builder()
-                        .setSourceLanguage(TranslateLanguage.ENGLISH)
-                        .setTargetLanguage(TranslateLanguage.ROMANIAN)
-                        .build();
-         englishRomanianTranslator = Translation.getClient(options);
 
-        DownloadConditions conditions = new DownloadConditions.Builder()
-                .requireWifi()
-                .build();
-        englishRomanianTranslator.downloadModelIfNeeded(conditions).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-//                button.setVisibility(View.VISIBLE);
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-//                        translatedTextView.setText("Something went wrong");
-                    }
-                });
 
         photoButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                englishRomanianTranslator = Translation.getClient(options);
+                DownloadConditions conditions = new DownloadConditions.Builder()
+                        .requireWifi()
+                        .build();
+                englishRomanianTranslator.downloadModelIfNeeded(conditions).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+//                button.setVisibility(View.VISIBLE);
+                    }
+                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //Toast.makeText(this, "translation failure", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
                 {
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
@@ -132,5 +132,54 @@ public class TranslateActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+        return true;
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1:
+                Toast.makeText(this, "Romanian-English was selected", Toast.LENGTH_SHORT).show();
+                options = new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ROMANIAN)
+                        .setTargetLanguage(TranslateLanguage.ENGLISH)
+                        .build();
+                break;
+                //return true;
+            case R.id.item2:
+                Toast.makeText(this, "Ukrainian-English was selected", Toast.LENGTH_SHORT).show();
+                options = new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.UKRAINIAN)
+                        .setTargetLanguage(TranslateLanguage.ENGLISH)
+                        .build();
+                break;
+                //return true;
+            case R.id.item3:
+                Toast.makeText(this, "French-English was selected", Toast.LENGTH_SHORT).show();
+                options = new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.FRENCH)
+                        .setTargetLanguage(TranslateLanguage.ENGLISH)
+                        .build();
+                break;
+                //return true;
+            case R.id.item4:
+                Toast.makeText(this, "Italian-English was selected", Toast.LENGTH_SHORT).show();
+                options = new TranslatorOptions.Builder()
+                        .setSourceLanguage(TranslateLanguage.ITALIAN)
+                        .setTargetLanguage(TranslateLanguage.ENGLISH)
+                        .build();
+                break;
+                //return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }
