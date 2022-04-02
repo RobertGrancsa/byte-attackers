@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
 //                recognizer.pr
             }
         });
+
         MaterialCardView Panic = findViewById(R.id.panic_button);
         Panic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         catch (IOException e) {
             e.printStackTrace();
         }
-        return streetName;
+        return  streetName;
     }
 
     public class MyLocationListener implements LocationListener {
@@ -246,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, longitude);
             String latitude = "Latitude: " + loc.getLatitude();
             Log.v(TAG, latitude);
+
 
             /*------- To get city name from coordinates -------- */
             String cityName = null;
