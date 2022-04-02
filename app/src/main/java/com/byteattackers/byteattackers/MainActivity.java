@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private SignInClient oneTapClient;
     private BeginSignInRequest signInRequest;
     private MaterialCardView getText;
+    private MaterialCardView translate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,6 +191,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        translate = findViewById(R.id.translate);
+        translate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onPause(){
@@ -283,5 +292,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 }
