@@ -3,9 +3,14 @@ package com.byteattackers.byteattackers;
 import static android.view.View.VISIBLE;
 import static androidx.camera.core.CameraXThreads.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +26,10 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class SmsActivity extends AppCompatActivity {
     // Saving phone number:
     public TextInputEditText smsEditText;
@@ -29,6 +38,8 @@ public class SmsActivity extends AppCompatActivity {
     public static final String Phone = "phoneKey";
     Button b1, b2;
     SharedPreferences sharedpreferences;
+    TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +54,17 @@ public class SmsActivity extends AppCompatActivity {
                 smsSendMessage(view);
             }
         });
+
+        textView = (TextView) findViewById(R.id.Text_sms);
         b1=(Button)findViewById(R.id.buttonsave);
         b2=(Button)findViewById(R.id.buttonedit);
         smsLayout = findViewById(R.id.textSms);
 
-//        smsLayout.setErrorEnabled(true);
-//        smsLayout.setError("Ai numaru prea surt");
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        textView.setText(getCity(location));
+
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String phonenr = sharedpreferences.getString(Phone, "None");
@@ -70,7 +86,7 @@ public class SmsActivity extends AppCompatActivity {
                     }
                     else {
                         smsLayout.setErrorEnabled(true);
-                        smsLayout.setError("Ai numaru prea surt");
+                        smsLayout.setError("Phone number is too short");
                     }
                 }
             });
@@ -92,7 +108,7 @@ public class SmsActivity extends AppCompatActivity {
                     }
                     else {
                         smsLayout.setErrorEnabled(true);
-                        smsLayout.setError("Ai numaru prea surt");
+                        smsLayout.setError("Phone number is too short");
                     }
                 }
             });
@@ -100,7 +116,7 @@ public class SmsActivity extends AppCompatActivity {
     }
         public void smsSendMessage(View view) {
         // Find the TextView number_to_call and assign it to textView.
-        TextView textView = (TextView) findViewById(R.id.Text_sms);
+
 
 
 
@@ -113,10 +129,29 @@ public class SmsActivity extends AppCompatActivity {
         // Set the data for the intent as the phone number.
         smsIntent.setData(Uri.parse(smsNumber));
         // Add the message (sms) with the key ("sms_body").
-        smsIntent.putExtra("sms_body", getString(R.string.message_to_send));
+        smsIntent.putExtra("sms_body", getString(R.string.message_to_send)+textView.getText());
         // If package resolves (target app installed), send intent.
         if (smsIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(smsIntent);
         }
+    }
+    public String getCity(Location loc) {
+        String cityName = null;
+        String streetName = null;
+        Geocoder gcd = new Geocoder(getBaseContext(), Locale.getDefault());
+        List<Address> addresses;
+        try {
+            addresses = gcd.getFromLocation(loc.getLatitude(),
+                    loc.getLongitude(), 1);
+            if (addresses.size() > 0) {
+                System.out.println(addresses.get(0).getLocality());
+                cityName = addresses.get(0).getLocality();
+                streetName = addresses.get(0).getAddressLine(0);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  streetName;
     }
 }
