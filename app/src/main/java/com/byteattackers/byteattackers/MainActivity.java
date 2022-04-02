@@ -180,6 +180,14 @@ public class MainActivity extends AppCompatActivity {
 //                recognizer.pr
             }
         });
+        MaterialCardView Panic = findViewById(R.id.panic_button);
+        Panic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SmsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onPause(){
