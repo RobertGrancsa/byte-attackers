@@ -27,13 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/blue_500"
             android:orientation="horizontal">
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/translate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                style="@style/YourCardView"
                 android:layout_weight="1"
-                style="?attr/materialCardViewElevatedStyle"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_margin="16dp">
@@ -41,13 +42,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TRANSLATE"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:fadingEdge=""/>
         </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                style="?attr/materialCardViewElevatedStyle"
+                style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_margin="16dp">
@@ -55,6 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GET TEXT"
+                    android:textColor="@color/black"
                     android:layout_gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
@@ -63,12 +67,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/blue_500"
             android:orientation="horizontal">
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                style="?attr/materialCardViewElevatedStyle"
+                style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_margin="16dp">
@@ -76,13 +81,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="LISTEN AUDIOBOOK"
+                    android:textColor="@color/black"
                     android:layout_gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                style="?attr/materialCardViewElevatedStyle"
+                style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
                 android:layout_margin="16dp">
@@ -90,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SOMETHING?"
+                    android:textColor="@color/black"
                     android:layout_gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
