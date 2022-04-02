@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "566582469911",
+    "project_id": "byte-attackers",
+    "storage_bucket": "byte-attackers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566582469911:android:34bf81c5c5290c1dea0352",
+        "android_client_info": {
+          "package_name": "com.byteattackers.byteattackers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566582469911-5eforuusgm1qr165rbm4d79fusfaqlib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAolNpQd8Wl3hye8hH5jSAKL-0JG02huJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566582469911-5eforuusgm1qr165rbm4d79fusfaqlib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
