@@ -36,6 +36,7 @@ import com.google.android.gms.auth.api.identity.Identity;
 import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView editLocation;
     private SignInClient oneTapClient;
     private BeginSignInRequest signInRequest;
-    private Button signIn;
+    private MaterialCardView getText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 //        TextView translatedTextView = findViewById(R.id.textTranslated);
 //        TextInputEditText toTranslate = findViewById(R.id.toTranslate);
 //        Button button = findViewById(R.id.button);
-        signIn = findViewById(R.id.signIn);
+        getText = findViewById(R.id.getText);
 //
 //        button.setVisibility(View.GONE);
 
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
+        getText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CameraActivity.class);
