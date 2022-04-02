@@ -97,7 +97,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Panic Button"
+                    android:text="PANIC BUTTON"
                     android:textColor="@color/black"
                     android:layout_gravity="center"/>
             </com.google.android.material.card.MaterialCardView>
