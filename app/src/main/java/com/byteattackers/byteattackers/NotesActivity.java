@@ -43,7 +43,7 @@ public class NotesActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case 10:
-                if (resultCode == RESULT_OK && data != null) {
+                if (resultCode == RESULT_OK && data == null) {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     txvResult.setText(result.get(0));
                 }
