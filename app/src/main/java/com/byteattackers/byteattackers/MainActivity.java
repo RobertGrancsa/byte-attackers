@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private MaterialCardView getText;
     private MaterialCardView translate;
     private MaterialCardView listenAudio;
+    private MaterialCardView notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +174,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AudioActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        notes = findViewById(R.id.notes);
+        notes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
                 startActivity(intent);
             }
         });

@@ -126,7 +126,7 @@ public class TranslateActivity extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    readText.setText("Something went wrong at translate");
+                                   // readText.setText("Something went wrong at translate");
                                 }
                             });
                 }
