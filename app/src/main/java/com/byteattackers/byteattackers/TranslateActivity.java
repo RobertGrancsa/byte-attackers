@@ -46,12 +46,13 @@ public class TranslateActivity extends AppCompatActivity {
         Button photoButton = (Button) this.findViewById(R.id.button1);
         readText = findViewById(R.id.readText);
 
+
         TranslatorOptions options =
                 new TranslatorOptions.Builder()
                         .setSourceLanguage(TranslateLanguage.ENGLISH)
                         .setTargetLanguage(TranslateLanguage.ROMANIAN)
                         .build();
-         englishRomanianTranslator = Translation.getClient(options);
+        englishRomanianTranslator = Translation.getClient(options);
 
         DownloadConditions conditions = new DownloadConditions.Builder()
                 .requireWifi()
@@ -59,27 +60,22 @@ public class TranslateActivity extends AppCompatActivity {
         englishRomanianTranslator.downloadModelIfNeeded(conditions).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-//                button.setVisibility(View.VISIBLE);
+
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-//                        translatedTextView.setText("Something went wrong");
+                        readText.setText("No language packages");
                     }
                 });
 
-        photoButton.setOnClickListener(new View.OnClickListener()
-        {
+        photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                {
+            public void onClick(View v) {
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
-                }
-                else
-                {
+                } else {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 }
@@ -98,8 +94,7 @@ public class TranslateActivity extends AppCompatActivity {
                 Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
-            }
-            else {
+            } else {
                 Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show();
             }
         }
@@ -126,7 +121,7 @@ public class TranslateActivity extends AppCompatActivity {
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-//                                translatedTextView.setText("Something went wrong at translate");
+                                    readText.setText("Something went wrong at translate");
                                 }
                             });
                 }

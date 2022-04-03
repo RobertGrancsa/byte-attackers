@@ -15,13 +15,14 @@
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Material3.LargeComponent</item>
+        <item name="fontFamily">@font/josefin_sans_file</item>
     </style>
 
     <style name="roundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-    <style name="YourCardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/blue_200</item>
+    <style name="YourCardView" parent="Widget.Material3.CardView.Elevated">
+        <item name="background">@drawable/gradient_card</item>
     </style>
 </resources>

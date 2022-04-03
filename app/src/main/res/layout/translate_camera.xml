@@ -6,16 +6,12 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Read Text"
-            app:navigationIcon="@drawable/ic_round_arrow_back_24"/>
         <!--            app:menu="@menu/top_app_bar"-->
 
 
@@ -51,7 +47,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox">
+            <AutoCompleteTextView
+                android:hint="Language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                />
+
+    </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="center"
+        app:navigationIcon="@drawable/ic_round_arrow_back_24"
+        app:title="Translate with camera" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

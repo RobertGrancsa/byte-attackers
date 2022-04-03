@@ -62,47 +62,13 @@ public class MainActivity extends AppCompatActivity {
     private BeginSignInRequest signInRequest;
     private MaterialCardView getText;
     private MaterialCardView translate;
+    private MaterialCardView listenAudio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        editLocation = findViewById(R.id.location);
-//        TextView translatedTextView = findViewById(R.id.textTranslated);
-//        TextInputEditText toTranslate = findViewById(R.id.toTranslate);
-//        Button button = findViewById(R.id.button);
         getText = findViewById(R.id.getText);
-//
-//        button.setVisibility(View.GONE);
-
-        TranslatorOptions options =
-                new TranslatorOptions.Builder()
-                        .setSourceLanguage(TranslateLanguage.ENGLISH)
-                        .setTargetLanguage(TranslateLanguage.ROMANIAN)
-                        .build();
-        final Translator englishRomanianTranslator =
-                Translation.getClient(options);
-
-        DownloadConditions conditions = new DownloadConditions.Builder()
-                .requireWifi()
-                .build();
-        englishRomanianTranslator.downloadModelIfNeeded(conditions).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-//                button.setVisibility(View.VISIBLE);
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-//                        translatedTextView.setText("Something went wrong");
-                    }
-                });
-
-//        boolean running = false;
-//        float totalStep = 0;
-//        SensorManager sensorManager = getSystemService(getActivity());
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -138,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 //                Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 //                locationListener.onLocationChanged(location);
 //
-////                tts.speak(getCity(location), TextToSpeech.QUEUE_ADD, null);
+//                tts.speak(getCity(location), TextToSpeech.QUEUE_ADD, null);
 //            }
 //        });
 
@@ -177,14 +143,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CameraActivity.class);
                 startActivity(intent);
-//                InputImage image = InputImage.fromMediaImage(mediaImage, rotation);
-//                recognizer.pr
             }
         });
 
 
         translate = findViewById(R.id.translate);
         translate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        listenAudio = findViewById(R.id.listenAudio);
+        listenAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
@@ -226,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onLocationChanged(Location loc) {
             editLocation.setText("");
-//            pb.setVisibility(View.INVISIBLE);
             Toast.makeText(
                     getBaseContext(),
                     "Location changed: Lat: " + loc.getLatitude() + " Lng: "
