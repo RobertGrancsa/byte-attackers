@@ -30,7 +30,7 @@ public class NotesActivity extends AppCompatActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
-        if (intent.resolveActivity(getPackageManager()) == null) {
+        if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, 10);
         } else {
             Toast.makeText(this, "Your Device Don't Support Speech Input", Toast.LENGTH_SHORT).show();

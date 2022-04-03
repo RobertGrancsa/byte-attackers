@@ -11,6 +11,8 @@ import androidx.camera.core.ImageProxy;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -25,11 +27,14 @@ import android.location.LocationManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.transition.Explode;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
     private MaterialCardView translate;
     private MaterialCardView listenAudio;
     private MaterialCardView notes;
+    private MaterialCardView detection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getText = findViewById(R.id.getText);
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -84,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+//        getWindow().setExitTransition(new Explode());
 
-        LocationListener locationListener = new MyLocationListener();
 
 //        button.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -113,24 +118,86 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        getText = findViewById(R.id.getText);
+        getText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, getText, "bg");
+                startActivity(intent, options.toBundle());
+            }
+        });
 
+        MaterialCardView panic = findViewById(R.id.panic_button);
+        panic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SmsActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, panic, "bg");
+                startActivity(intent, options.toBundle());
+            }
+        });
+
+        translate = findViewById(R.id.translate);
+        translate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, translate, "bg");
+                startActivity(intent, options.toBundle());
+            }
+        });
+
+        listenAudio = findViewById(R.id.listenAudio);
+        listenAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AudioActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, listenAudio, "bg");
+                startActivity(intent, options.toBundle());
+            }
+        });
+
+        notes = findViewById(R.id.notes);
+        notes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, notes, "bg");
+                startActivity(intent, options.toBundle());
+            }
+        });
+
+        detection = findViewById(R.id.detect);
+        detection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ObjectDetectAcitivity.class);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, detection, "bg");
+                startActivity(intent, options.toBundle());
+            }
+        });
+
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        LocationListener locationListener = new MyLocationListener();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityResultLauncher<String[]> locationPermissionRequest =
                     registerForActivityResult(new ActivityResultContracts
-                                .RequestMultiplePermissions(), result -> {
-                            Boolean fineLocationGranted = result.getOrDefault(
-                                    Manifest.permission.ACCESS_FINE_LOCATION, false);
-                            Boolean coarseLocationGranted = result.getOrDefault(
-                                    Manifest.permission.ACCESS_COARSE_LOCATION,false);
-                            if (fineLocationGranted != null && fineLocationGranted) {
-                                // Precise location access granted.
-                            } else if (coarseLocationGranted != null && coarseLocationGranted) {
-                                return;
-                            } else {
-                                return;
+                                    .RequestMultiplePermissions(), result -> {
+                                Boolean fineLocationGranted = result.getOrDefault(
+                                        Manifest.permission.ACCESS_FINE_LOCATION, false);
+                                Boolean coarseLocationGranted = result.getOrDefault(
+                                        Manifest.permission.ACCESS_COARSE_LOCATION,false);
+                                if (fineLocationGranted != null && fineLocationGranted) {
+                                    // Precise location access granted.
+                                } else if (coarseLocationGranted != null && coarseLocationGranted) {
+                                    return;
+                                } else {
+                                    return;
+                                }
                             }
-                        }
                     );
 
             locationPermissionRequest.launch(new String[] {
@@ -142,50 +209,6 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-
-        getText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CameraActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        MaterialCardView Panic = findViewById(R.id.panic_button);
-        Panic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SmsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        translate = findViewById(R.id.translate);
-        translate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        listenAudio = findViewById(R.id.listenAudio);
-        listenAudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AudioActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        notes = findViewById(R.id.notes);
-        notes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void onPause(){

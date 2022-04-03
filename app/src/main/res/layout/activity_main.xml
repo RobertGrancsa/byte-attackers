@@ -26,7 +26,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="16dp">
+                android:layout_margin="16dp"
+                android:transitionName="bg">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -46,7 +47,8 @@
                 style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="16dp">
+                android:layout_margin="16dp"
+                android:transitionName="bg">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,7 +74,8 @@
                 style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="16dp">
+                android:layout_margin="16dp"
+                android:transitionName="bg">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +94,8 @@
                 style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="16dp">
+                android:layout_margin="16dp"
+                android:transitionName="bg">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,7 +121,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="16dp">
+                android:layout_margin="16dp"
+                android:transitionName="bg">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -130,18 +135,19 @@
                     android:fadingEdge=""/>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/smthelse"
+                android:id="@+id/detect"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 style="@style/YourCardView"
                 android:clickable="true"
                 android:focusable="true"
-                android:layout_margin="16dp">
+                android:layout_margin="16dp"
+                android:transitionName="bg">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="smthelse"
+                    android:text="DETECT OBJECTS"
                     android:textFontWeight="700"
                     android:textSize="24sp"
                     android:textAlignment="center"

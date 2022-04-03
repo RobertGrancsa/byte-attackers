@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Byteattackers">
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="ocr" />
+            android:value="ocr, ica, label" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -71,8 +71,18 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-  <activity
+        <activity
             android:name=".NotesActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.TTS_SERVICE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ObjectDetectAcitivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

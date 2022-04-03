@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:transitionName="bg">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
