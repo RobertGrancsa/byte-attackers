@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -28,6 +29,7 @@ public class CameraActivity extends Activity {
     private TextView readText;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private TextRecognizer recognizer;
+    private ExtendedFloatingActionButton photoButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -35,7 +37,7 @@ public class CameraActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         this.imageView = this.findViewById(R.id.imageView1);
-        Button photoButton = (Button) this.findViewById(R.id.button1);
+        photoButton = this.findViewById(R.id.button1);
         readText = findViewById(R.id.readText);
         photoButton.setOnClickListener(new View.OnClickListener()
         {
@@ -85,6 +87,7 @@ public class CameraActivity extends Activity {
                 @Override
                 public void onSuccess(Text text) {
                     readText.setText(text.getText());
+                    photoButton.shrink();
                 }
             });
         }

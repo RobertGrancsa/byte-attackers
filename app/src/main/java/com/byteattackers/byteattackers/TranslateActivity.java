@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.mlkit.common.model.DownloadConditions;
 import com.google.mlkit.nl.translate.TranslateLanguage;
 import com.google.mlkit.nl.translate.Translation;
@@ -40,6 +41,7 @@ public class TranslateActivity extends AppCompatActivity {
     private TextRecognizer recognizer;
     private Translator englishRomanianTranslator;
     private TranslatorOptions options;
+    private ExtendedFloatingActionButton photoButton;
 
 
     @Override
@@ -48,7 +50,7 @@ public class TranslateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.translate_camera);
         this.imageView = (ImageView)this.findViewById(R.id.imageView1);
-        Button photoButton = (Button) this.findViewById(R.id.button1);
+        photoButton = this.findViewById(R.id.button1);
         readText = findViewById(R.id.readText);
 
 
@@ -118,6 +120,7 @@ public class TranslateActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(String s) {
                                     readText.setText(s);
+                                    photoButton.shrink();
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
