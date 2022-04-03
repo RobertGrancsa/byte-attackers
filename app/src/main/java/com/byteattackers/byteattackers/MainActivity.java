@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         listenAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TranslateActivity.class);
+                Intent intent = new Intent(MainActivity.this, AudioActivity.class);
                 startActivity(intent);
             }
         });
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onLocationChanged(Location loc) {
-            editLocation.setText("");
+//            editLocation.setText("");
             Toast.makeText(
                     getBaseContext(),
                     "Location changed: Lat: " + loc.getLatitude() + " Lng: "
@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
             }
             String s = longitude + "\n" + latitude + "\n\nMy Current City is: "
                     + cityName + "\n" + streetName + "\n" + feature;
-            editLocation.setText(s);
+//            editLocation.setText(s);
         }
 
         @Override

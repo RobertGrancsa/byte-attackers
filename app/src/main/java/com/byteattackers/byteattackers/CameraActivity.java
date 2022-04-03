@@ -34,7 +34,7 @@ public class CameraActivity extends Activity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        this.imageView = (ImageView)this.findViewById(R.id.imageView1);
+        this.imageView = this.findViewById(R.id.imageView1);
         Button photoButton = (Button) this.findViewById(R.id.button1);
         readText = findViewById(R.id.readText);
         photoButton.setOnClickListener(new View.OnClickListener()

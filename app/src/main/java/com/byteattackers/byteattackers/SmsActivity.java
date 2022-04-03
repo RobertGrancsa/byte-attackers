@@ -86,7 +86,10 @@ public class SmsActivity extends AppCompatActivity {
                     }
                     else {
                         smsLayout.setErrorEnabled(true);
-                        smsLayout.setError("Phone number is too short");
+                        if (phone.length() < 10)
+                            smsLayout.setError("Phone number is too short");
+                        else
+                            smsLayout.setError("Phone number is too long");
                     }
                 }
             });
@@ -108,7 +111,10 @@ public class SmsActivity extends AppCompatActivity {
                     }
                     else {
                         smsLayout.setErrorEnabled(true);
-                        smsLayout.setError("Phone number is too short");
+                        if (phone.length() < 10)
+                            smsLayout.setError("Phone number is too short");
+                        else
+                            smsLayout.setError("Phone number is too long");;
                     }
                 }
             });
