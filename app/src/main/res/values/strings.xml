@@ -11,4 +11,6 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="my_web_client_id" translatable="false">566582469911-5eforuusgm1qr165rbm4d79fusfaqlib.apps.googleusercontent.com</string>
+
+    <string name="message_to_send">Warning button! Current location: </string>
 </resources>

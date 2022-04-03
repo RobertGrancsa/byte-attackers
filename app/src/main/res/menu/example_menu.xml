@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.sample.YourActivity"
+    xmlns:compat="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item1"
+        android:icon="@drawable/ic_icon"
+        android:title="Romanian-English"
+        compat:showAsAction="never"/>
+
+    <item android:id="@+id/item2"
+        android:icon="@drawable/ic_icon"
+        android:title="Ukrainian-English"
+        compat:showAsAction="never"/>
+
+    <item android:id="@+id/item3"
+        android:icon="@drawable/ic_icon"
+        android:title="French-English"
+        compat:showAsAction="never"/>
+
+    <item android:id="@+id/item4"
+        android:icon="@drawable/ic_icon"
+        android:title="Italian-English"
+        compat:showAsAction="never"/>
+<!--    <item android:id="@+id/help"-->
+<!--        android:icon="@drawable/ic_help"-->
+<!--        android:title="@string/help" />-->
+</menu>

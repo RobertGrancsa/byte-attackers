@@ -14,6 +14,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.SensorManager;
 import android.location.Address;
@@ -25,6 +26,9 @@ import android.media.Image;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -146,6 +150,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        MaterialCardView Panic = findViewById(R.id.panic_button);
+        Panic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SmsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         translate = findViewById(R.id.translate);
         translate.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         catch (IOException e) {
             e.printStackTrace();
         }
-        return streetName;
+        return  streetName;
     }
 
     public class MyLocationListener implements LocationListener {
@@ -207,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, longitude);
             String latitude = "Latitude: " + loc.getLatitude();
             Log.v(TAG, latitude);
+
 
             /*------- To get city name from coordinates -------- */
             String cityName = null;
